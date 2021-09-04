@@ -1,2 +1,4 @@
+bookstore/.env
+bookstore/.env.dev
 bookstore/node_modules
 bookstore/package-lock.json
