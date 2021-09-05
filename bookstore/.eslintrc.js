@@ -5,15 +5,20 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: '@babel/eslint-parser',
-    requireConfigFile: false
+    parser: '@typescript-eslint/parser'
   },
   extends: [
-    '@nuxtjs',
-    'plugin:nuxt/recommended'
+    'plugin:vue/recommended',
+    'plugin:prettier/recommended'
   ],
-  plugins: [
-  ],
-  // add your custom rules here
-  rules: {}
-}
+  plugins: ['vue'],
+  rules: {
+    semi: [2, 'never'],
+    'no-console': 'off',
+    'vue/max-attributes-per-line': 'off',
+    'prettier/prettier': ['error', {
+      semi: false,
+      singleQuote: true
+    }]
+  }
+};

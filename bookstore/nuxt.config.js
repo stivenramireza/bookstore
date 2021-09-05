@@ -34,15 +34,9 @@ export default {
 
   components: true,
 
-  buildModules: [
-    '@nuxtjs/eslint-module'
-  ],
+  buildModules: ['@nuxtjs/eslint-module'],
 
-  modules: [
-    'bootstrap-vue/nuxt',
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa'
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/vuetify'],
 
   axios: {},
 
@@ -53,5 +47,18 @@ export default {
   },
 
   build: {
+    extend(config, ctx) {
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue|ts)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/,
+          options: {
+            fix: true,
+          },
+        })
+      }
+    }
   }
 }
