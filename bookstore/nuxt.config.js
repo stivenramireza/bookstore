@@ -30,15 +30,50 @@ export default {
 
   css: [],
 
-  plugins: [],
+  plugins: [{ src: '~/plugins/vuex-persist', ssr: false }],
 
   components: true,
 
   buildModules: ['@nuxtjs/eslint-module'],
 
-  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/vuetify'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/vuetify', '@nuxtjs/auth-next'],
+
+  auth: {
+    strategies: {
+      awsCognito: {
+        scheme: 'oauth2',
+        endpoints: {
+          authorization: `${process.env.AWS_COGNITO_DOMAIN}/login`,
+          token: `${process.env.AWS_COGNITO_DOMAIN}/oauth2/token`,
+          userInfo: `${process.env.AWS_COGNITO_DOMAIN}/oauth2/userInfo`,
+          logout: `${process.env.AWS_COGNITO_DOMAIN}/logout`
+        },
+        token: {
+          property: 'access_token',
+          type: 'Bearer',
+          maxAge: 3600
+        },
+        refreshToken: {
+          property: 'refresh_token',
+          maxAge: 60 * 60 * 24 * 30
+        },
+        responseType: 'token',
+        redirectUri: `${process.env.BOOKSTORE_DOMAIN}/cart`,
+        logoutRedirectUri: `${process.env.BOOKSTORE_DOMAIN}`,
+        clientId: process.env.AWS_COGNITO_CLIENT_ID,
+        scope: ['email', 'openid', 'profile'],
+        codeChallengeMethod: 'S256'
+      }
+    }
+  },
 
   axios: {},
+
+  env: {
+    BOOKSTORE_DOMAIN: process.env.BOOKSTORE_DOMAIN,
+    AWS_COGNITO_DOMAIN: process.env.AWS_COGNITO_DOMAIN,
+    AWS_COGNITO_CLIENT_ID: process.env.AWS_COGNITO_CLIENT_ID
+  },
 
   pwa: {
     manifest: {

@@ -1,0 +1,76 @@
+{
+    "books": [
+        {
+            "book_id": 1,
+            "name": "Leonardo Davinci: La Biografia",
+            "image": "https://www.biografiasyvidas.com/biografia/l/fotos/leonardo_da_vinci_2.jpg",
+            "author": "Walter Issacson",
+            "description":"Basándose en las miles de páginas de los cuadernos manuscritos de Leonardo y nuevos descubrimientos sobre su vida y su obra, Walter Isaacson teje una narración que conecta el arte de Da Vinci con sus investigaciones científicas, y nos muestra cómo el genio del hombre más visionario de la historia nació de habilidades que todos poseemos y podemos estimular, tales como la curiosidad incansable, la observación cuidadosa y la imaginación juguetona. Su creatividad, como la de todo gran innovador, resultó de la intersección entre la tecnología y las humanidades. Despellejó y estudió el rostro de numerosos cadáveres, dibujó los músculos que configuran el movimiento de los labios y pintó la sonrisa más enigmática de la historia, la de la Mona Lisa. Exploró las leyes de la óptica, demostró como la luz incidía en la córnea y logró producir esa ilusión de profundidad en la Última cena.",
+            "countInStock": 2,
+            "price": 50000
+        },
+        {
+            "book_id": 2,
+            "name": "Inteligencia Genial",
+            "image": "https://circulocultural.com/wp-content/uploads/2019/03/Inteligencia-Ideal_Tiro.jpg",
+            "author": "Michael Gelb",
+            "description": "El que, para muchos, ha sido el mayor genio de todos los tiempos, Leonardo da Vinci, puede servir de inspiración a todo aquel que quiera desarrollar al máximo su potencial intelectual y su creatividad. Paso a paso, mediante ejercicios, técnicas y lecciones, este libro muestra el camino para ampliar los horizontes de la mente",
+            "countInStock": 3,
+            "price": 30000
+        },
+        {
+            "book_id": 3,
+            "name": "Metallica: The $24.95 Book",
+            "image": "https://images-us.bookshop.org/ingram/9781493061341.jpg?height=500&v=v2",
+            "author": "Jo Nesbo",
+            "description": "A tense and atmospheric standalone thriller about two brothers, one small town, and a lifetime of dark secrets, from bestselling author Jo Nesbø",
+            "countInStock": 5,
+            "price": 20000
+        },
+        {
+            "book_id": 4,
+            "name": "The Kingdom",
+            "image": "https://images-us.bookshop.org/ingram/9780525564867.jpg?height=500&v=v2",
+            "author": "Walter Issacson",
+            "description":"Basándose en las miles de páginas de los cuadernos manuscritos de Leonardo y nuevos descubrimientos sobre su vida y su obra, Walter Isaacson teje una narración que conecta el arte de Da Vinci con sus investigaciones científicas, y nos muestra cómo el genio del hombre más visionario de la historia nació de habilidades que todos poseemos y podemos estimular, tales como la curiosidad incansable, la observación cuidadosa y la imaginación juguetona. Su creatividad, como la de todo gran innovador, resultó de la intersección entre la tecnología y las humanidades. Despellejó y estudió el rostro de numerosos cadáveres, dibujó los músculos que configuran el movimiento de los labios y pintó la sonrisa más enigmática de la historia, la de la Mona Lisa. Exploró las leyes de la óptica, demostró como la luz incidía en la córnea y logró producir esa ilusión de profundidad en la Última cena.",
+            "countInStock": 2,
+            "price": 50000
+        },
+        {
+            "book_id": 5,
+            "name": "A World Between",
+            "image": "https://images-us.bookshop.org/ingram/9781936932955.jpg?height=500&v=v2",
+            "author": "Emily Hashimoto",
+            "description": "A college fling between two women turns into a lifelong connection--and spells out a new kind of love story for a millennial, immigrant America.",
+            "countInStock": 3,
+            "price": 30000
+        },
+        {
+            "book_id": 6,
+            "name": "The Scythe",
+            "image": "https://images-us.bookshop.org/ingram/9780991407309.jpg?height=500&v=v2",
+            "author": "Balogun Ojetade",
+            "description": "He has been given a second chance at life. A second chance at revenge. He is the bridge between the Quick and the Dead. He is...THE SCYTHE Out of the tragedy of the Tulsa Race Riot of 1921",
+            "countInStock": 3,
+            "price": 40000
+        },
+        {
+            "book_id": 7,
+            "name": "The Inheritance Trilogy",
+            "image": "https://images-na.ssl-images-amazon.com/images/I/51mRlKxYZNL._SX342_SY445_QL70_ML2_.jpg",
+            "author": "N. K. Jemisin",
+            "description": "After her mother's death, a young woman is summoned to the floating city of Sky to claim a royal inheritance she never knew existed in this epic fantasy trilogy from the NYT bestselling author of The Fifth Season.",
+            "countInStock": 3,
+            "price": 100000
+        },
+        {
+            "book_id": 8,
+            "name": "Jonny Appleseed            ",
+            "image": "https://images-us.bookshop.org/ingram/9781551527253.jpg?height=500&v=v2",
+            "author": "Joshua Whitehead",
+            "description": "Jonny Appleseed is a unique, shattering vision of Indigenous life, full of grit, glitter, and dreams.",
+            "countInStock": 3,
+            "price": 70000
+        }
+    ]
+}
