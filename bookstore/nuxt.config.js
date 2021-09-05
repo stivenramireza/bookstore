@@ -58,8 +58,8 @@ export default {
           maxAge: 60 * 60 * 24 * 30
         },
         responseType: 'token',
-        redirectUri: `${process.env.BOOKSTORE_DOMAIN}/cart`,
-        logoutRedirectUri: `${process.env.BOOKSTORE_DOMAIN}`,
+        redirectUri: `${process.env.BOOKSTORE_DOMAIN}/profile`,
+        logoutRedirectUri: `${process.env.BOOKSTORE_DOMAIN}/profile`,
         clientId: process.env.AWS_COGNITO_CLIENT_ID,
         scope: ['email', 'openid', 'profile'],
         codeChallengeMethod: 'S256'
