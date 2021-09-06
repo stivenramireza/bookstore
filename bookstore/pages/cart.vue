@@ -13,14 +13,9 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-    <v-row class="mt-2 btn-pay">
-      <v-btn
-        tile
-        color="blue-grey darken-4 white--text"
-        @click="$router.push('/login')"
-      >
-        <v-icon color="white" left> mdi-currency-usd </v-icon>
-        Buy
+    <v-row v-if="books.length > 0" class="mt-2 btn-pay">
+      <v-btn tile color="blue-grey darken-4 white--text" @click="confirm()">
+        Confirm
       </v-btn>
     </v-row>
   </v-row>
@@ -28,7 +23,7 @@
 
 <script>
 import CartList from '@/components/common/CartList'
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -37,23 +32,25 @@ export default {
   data() {
     return {
       panel: 0,
-      digitalMineDomain: process.env.DIGITAL_MINE_DOMAIN,
-      wompiPublicKey: process.env.WOMPI_PUBLIC_KEY,
-    }
-  },
-  head() {
-    return {
-      script: [
-        {
-          src: 'https://checkout.wompi.co/widget.js',
-        },
-      ],
+      loggedIn: false,
     }
   },
   computed: {
-    ...mapGetters({
-      totalPrice: 'cart/totalPrice',
+    ...mapState({
+      books: (state) => state.cart.books,
     }),
+  },
+  created() {
+    this.loggedIn = this.$auth.strategy.token.get()
+  },
+  methods: {
+    confirm() {
+      if (this.loggedIn) {
+        this.$router.push('/order')
+      } else {
+        this.$auth.loginWith('awsCognito')
+      }
+    },
   },
 }
 </script>

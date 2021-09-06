@@ -10,26 +10,19 @@
       <v-divider class="mx-4" color="white"></v-divider>
       <v-card-actions>
         <v-btn
-          v-if="!book.selected"
           color="white"
           text
-          @click="add(book) + $forceUpdate() + showAlert()"
+          @click="addItem(book) + $forceUpdate() + showAlert()"
         >
           <v-icon left>mdi-cart</v-icon> Add to cart
-        </v-btn>
-        <v-btn v-else @click="remove(book) + $forceUpdate() + showAlert()">
-          <v-icon left>mdi-cart</v-icon> Remove from cart
         </v-btn>
         <v-btn color="white" text class="ml-auto">
           <v-icon left>mdi-plus</v-icon> See more
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-alert v-if="book.selected" type="success" :value="alert" class="mt-2">
+    <v-alert type="success" :value="alert" class="mt-2">
       Added {{ book.name }} to cart
-    </v-alert>
-    <v-alert v-else type="error" :value="alert" class="mt-2">
-      Removed {{ book.name }} from cart
     </v-alert>
   </div>
 </template>
@@ -57,8 +50,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      add: 'cart/add',
-      remove: 'cart/remove',
+      addItem: 'cart/addItem',
     }),
     showAlert() {
       this.alert = true
