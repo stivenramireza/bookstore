@@ -1,0 +1,36 @@
+service: orders-service
+
+frameworkVersion: '2'
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: '20201221'
+  timeout: 60
+  environment:
+    DOCUMENTDB_HOSTNAME: ${env:cluster_docdb_dns}
+    DOCUMENTDB_USERNAME: ${env:db_username}
+    DOCUMENTDB_PASSWORD: ${env:db_password}
+
+  vpc:
+    securityGroupIds:
+      - ${env:lambda_security_group_id}
+    subnetIds:
+      - ${env:aws_private_subnet_01}
+      - ${env:aws_private_subnet_02}
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-offline

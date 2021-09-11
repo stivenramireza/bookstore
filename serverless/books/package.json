@@ -1,0 +1,16 @@
+{
+  "name": "book-services",
+  "description": "",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "serverless offline start --httpPort 3001 --lambdaPort 3002"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-python-requirements": "^5.1.1",
+    "serverless-wsgi": "^2.0.1",
+    "serverless": "^2.56.0",
+    "serverless-http": "^2.7.0",
+    "serverless-offline": "^8.0.0"
+  }
+}

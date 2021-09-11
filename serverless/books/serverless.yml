@@ -1,0 +1,40 @@
+service: book-services
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  lambdaHashingVersion: '20201221'
+  runtime: python3.8
+  timeout: 60
+  environment:
+    DOCUMENTDB_HOSTNAME: ${env:cluster_docdb_dns}
+    DOCUMENTDB_USERNAME: ${env:db_username}
+    DOCUMENTDB_PASSWORD: ${env:db_password}
+
+  vpc:
+    securityGroupIds:
+      - ${env:lambda_security_group_id}
+    subnetIds:
+      - ${env:aws_private_subnet_01}
+      - ${env:aws_private_subnet_02}
+
+functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-wsgi
+  - serverless-python-requirements
+  - serverless-offline
+
+custom:
+  wsgi:
+    app: app.app

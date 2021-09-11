@@ -1,4 +1,5 @@
 bookstore/.env
-bookstore/.env.dev
 bookstore/node_modules
-bookstore/package-lock.json
+serverless/books/node_modules
+serverless/orders/.env
+serverless/orders/node_modules
