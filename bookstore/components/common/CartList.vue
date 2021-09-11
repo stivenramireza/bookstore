@@ -1,6 +1,6 @@
 <template>
   <v-list color="blue-grey darken-3">
-    <div v-if="books.length > 0">
+    <div v-if="items.length > 0">
       <v-list-item>
         <v-list-item-avatar></v-list-item-avatar>
         <v-list-item-title class="product"
@@ -9,7 +9,7 @@
         <v-list-item-title><strong>Quantity</strong></v-list-item-title>
         <v-list-item-title><strong>Summary</strong></v-list-item-title>
       </v-list-item>
-      <v-list-item v-for="(item, index) in books" :key="index" color="white">
+      <v-list-item v-for="(item, index) in items" :key="index" color="white">
         <v-list-item-avatar>
           <v-img :src="item.image"></v-img>
         </v-list-item-avatar>
@@ -17,12 +17,22 @@
           {{ item.name }}</v-list-item-title
         >
         <v-list-item-title>
-          <v-btn color="white" text @click="removeItem(item) + $forceUpdate()">
+          <v-btn
+            v-if="isCart"
+            color="white"
+            text
+            @click="removeItem(item) + $forceUpdate()"
+          >
             <v-icon left>mdi-minus</v-icon>
           </v-btn>
 
           {{ item.quantity }}
-          <v-btn color="white" text @click="addItem(item) + $forceUpdate()">
+          <v-btn
+            v-if="isCart"
+            color="white"
+            text
+            @click="addItem(item) + $forceUpdate()"
+          >
             <v-icon left>mdi-plus</v-icon>
           </v-btn>
         </v-list-item-title>
@@ -49,27 +59,28 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex'
-const numeral = require('numeral')
 export default {
-  filters: {
-    priceFormat: (value) => {
-      return '$' + numeral(value).format('0,0,0,0,0')
+  props: {
+    isCart: {
+      type: Boolean,
+      default: true,
     },
-  },
-  computed: {
-    ...mapState({
-      books: (state) => state.cart.books,
-    }),
-    ...mapGetters({
-      totalPrice: 'cart/totalPrice',
-    }),
-  },
-  methods: {
-    ...mapMutations({
-      addItem: 'cart/addItem',
-      removeItem: 'cart/removeItem',
-    }),
+    items: {
+      type: Array,
+      default: () => [],
+    },
+    totalPrice: {
+      type: Number,
+      default: 0,
+    },
+    addItem: {
+      type: Function,
+      default: () => null,
+    },
+    removeItem: {
+      type: Function,
+      default: () => null,
+    },
   },
 }
 </script>

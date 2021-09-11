@@ -8,9 +8,16 @@
     </v-toolbar-title>
     <v-spacer />
     <v-toolbar-title class="ml-5 align-center">
+      <span
+        v-if="loggedIn"
+        class="header-item toolbar-options"
+        @click="$router.push('/orders')"
+        >My orders</span
+      >
       <span class="header-item toolbar-options" @click="$router.push('/about')"
         >About</span
       >
+
       <span v-if="books.length !== 0" class="header-item">
         <Cart :items="books" />
       </span>

@@ -17,12 +17,7 @@ export default {
   middleware: 'auth',
   data() {
     return {
-      email: null,
-      phoneNumber: null,
-      userId: null,
       username: null,
-      accessToken: null,
-      refreshToken: null,
     }
   },
   computed: {
@@ -31,18 +26,7 @@ export default {
     }),
   },
   created() {
-    console.log(this.books)
-    this.email = this.$auth.user.email
-    this.phoneNumber = this.$auth.user.phone_number
-    this.userId = this.$auth.user.sub
     this.username = this.$auth.user.username
-    this.accessToken = this.$auth.strategy.token.get()
-    this.refreshToken = this.$auth.strategy.refreshToken.get()
-  },
-  methods: {
-    logOut() {
-      this.$auth.logout()
-    },
   },
 }
 </script>

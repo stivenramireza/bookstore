@@ -9,7 +9,12 @@
           </template>
         </v-expansion-panel-header>
         <v-expansion-panel-content color="blue-grey darken-3 white--text">
-          <CartList />
+          <CartList
+            :items="books"
+            :total-price="totalPrice"
+            :add-item="addItem"
+            :remove-item="removeItem"
+          />
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -23,7 +28,7 @@
 
 <script>
 import CartList from '@/components/common/CartList'
-import { mapState } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -39,11 +44,18 @@ export default {
     ...mapState({
       books: (state) => state.cart.books,
     }),
+    ...mapGetters({
+      totalPrice: 'cart/totalPrice',
+    }),
   },
   created() {
     this.loggedIn = this.$auth.strategy.token.get()
   },
   methods: {
+    ...mapMutations({
+      addItem: 'cart/addItem',
+      removeItem: 'cart/removeItem',
+    }),
     confirm() {
       if (this.loggedIn) {
         this.$router.push('/order')

@@ -39,6 +39,9 @@ export const mutations = {
       )
     }
   },
+  updateCart(state, payload) {
+    state.books = payload
+  },
 }
 
 export const getters = {

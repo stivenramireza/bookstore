@@ -1,20 +1,5 @@
-const path = require('path')
-const fs = require('fs')
-const env = process.env.NODE_ENV
-
-const envPath = path.resolve(
-  process.cwd(),
-  env !== 'development' ? `.env.${env}` : '.env.dev'
-)
-const defaultEnvPath = path.resolve(process.cwd(), '.env')
-
-require('dotenv').config({
-  path: fs.existsSync(envPath) ? envPath : defaultEnvPath
-})
-
-console.info(`Using ${env} environment variables`)
-
 export default {
+  ssr: false,
   head: {
     title: 'Bookstore',
     meta: [
@@ -30,7 +15,7 @@ export default {
 
   css: [],
 
-  plugins: [{ src: '~/plugins/vuex-persist', ssr: false }],
+  plugins: [{ src: '~/plugins/filters', ssr: false }, { src: '~/plugins/vuex-persist', ssr: false }],
 
   components: true,
 
@@ -58,8 +43,8 @@ export default {
           maxAge: 60 * 60 * 24 * 30
         },
         responseType: 'token',
-        redirectUri: `${process.env.BOOKSTORE_DOMAIN}/profile`,
-        logoutRedirectUri: `${process.env.BOOKSTORE_DOMAIN}/profile`,
+        redirectUri: `${process.env.BOOKSTORE_DOMAIN}/login`,
+        logoutRedirectUri: `${process.env.BOOKSTORE_DOMAIN}/login`,
         clientId: process.env.AWS_COGNITO_CLIENT_ID,
         scope: ['email', 'openid', 'profile'],
         codeChallengeMethod: 'S256'
@@ -72,7 +57,9 @@ export default {
   env: {
     BOOKSTORE_DOMAIN: process.env.BOOKSTORE_DOMAIN,
     AWS_COGNITO_DOMAIN: process.env.AWS_COGNITO_DOMAIN,
-    AWS_COGNITO_CLIENT_ID: process.env.AWS_COGNITO_CLIENT_ID
+    AWS_COGNITO_CLIENT_ID: process.env.AWS_COGNITO_CLIENT_ID,
+    BOOKS_API: process.env.BOOKS_API,
+    ORDERS_API: process.env.ORDERS_API
   },
 
   pwa: {

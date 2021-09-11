@@ -16,9 +16,6 @@
         >
           <v-icon left>mdi-cart</v-icon> Add to cart
         </v-btn>
-        <v-btn color="white" text class="ml-auto">
-          <v-icon left>mdi-plus</v-icon> See more
-        </v-btn>
       </v-card-actions>
     </v-card>
     <v-alert type="success" :value="alert" class="mt-2">
@@ -29,13 +26,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
-const numeral = require('numeral')
 export default {
-  filters: {
-    priceFormat: (value) => {
-      return '$' + numeral(value).format('0,0,0,0,0')
-    },
-  },
   props: {
     book: {
       type: Object,
