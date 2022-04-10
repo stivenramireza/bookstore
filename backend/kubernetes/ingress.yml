@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bookstore
+  namespace: bookstore-api
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /api/auth
+        pathType: Prefix
+        backend:
+          service:
+            name: auth-service
+            port:
+              number: 30001
+      - path: /api/books
+        pathType: Prefix
+        backend:
+          service:
+            name: books-service
+            port:
+              number: 30002
+      - path: /api/emails
+        pathType: Prefix
+        backend:
+          service:
+            name: emails-service
+            port:
+              number: 30003
+      - path: /api/orders
+        pathType: Prefix
+        backend:
+          service:
+            name: orders-service
+            port:
+              number: 30004

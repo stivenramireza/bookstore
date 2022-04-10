@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emails-service
+  namespace: bookstore-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: emails-service
+  template:
+    metadata:
+      labels:
+        app: emails-service
+    spec:
+      containers:
+        - name: emails-service
+          image: registry.gitlab.com/st1611/backend/emails-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+              protocol: TCP

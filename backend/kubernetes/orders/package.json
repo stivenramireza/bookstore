@@ -1,0 +1,21 @@
+{
+    "name": "orders-service",
+    "version": "1.0.0",
+    "description": "Orders service to register client orders",
+    "scripts": {
+        "start": "node index.js",
+        "tests": "echo running unit tests...",
+        "build": "echo building project..."
+    },
+    "dependencies": {
+        "axios": "^0.21.4",
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "helmet": "^4.6.0",
+        "mongodb": "^4.1.1",
+        "mongoose": "^5.12.3",
+        "mongoose-sequence": "^5.3.1"
+    }
+}
