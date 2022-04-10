@@ -4,7 +4,10 @@
       Processing your order...
     </p>
     <div v-if="orderStatus == 'success'">
-      <p class="order-section">Your order has been confirmed successfully.</p>
+      <p class="order-section">
+        Your order has been confirmed successfully and an email will be sent
+        with all details!
+      </p>
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Facebook_like_thumb.png/1196px-Facebook_like_thumb.png"
         alt="success-confirm"

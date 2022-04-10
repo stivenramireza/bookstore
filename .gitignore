@@ -1,5 +1,9 @@
+# Frontend
 bookstore/.env
 bookstore/node_modules
+bookstore/static/sw.js
+
+# Backend
 serverless/books/node_modules
 serverless/orders/.env
 serverless/orders/node_modules
