@@ -6,6 +6,7 @@ const connectDB = async() =>{
   const uri = `mongodb://${process.env.DOCUMENTDB_USERNAME}:${process.env.DOCUMENTDB_PASSWORD}@${process.env.DOCUMENTDB_HOSTNAME}:27017/?ssl=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false`
   try{
       const conn = await mongoose.connect(uri, {
+          //useUnifiedTopology: true,
           useNewUrlParser: true,
           useCreateIndex: true,
           sslCA: require('fs').readFileSync(`${__dirname}/rds-combined-ca-bundle.pem`)
@@ -32,6 +33,24 @@ const OrderSchema = new mongoose.Schema({
 
 OrderSchema.plugin(AutoIncrement, { id:'order_seq', inc_field: 'order_id' });
 Order = mongoose.model('Order', OrderSchema);
+
+// Email service
+const axios = require('axios');
+
+const sendEmail = async(orderId) => {
+  // TODO Send order email confirmation with JWT
+  try {
+    const url = `${process.env.EMAILS_API}/send`
+    await axios.post(url, {
+      item_id: orderId,
+      email_type: 'order'
+    })
+    return 'Email has been sent successfully'
+  } catch (err) {
+    return `Error to send email: ${err}`
+  }
+}
+
 
 // Serverless application
 const serverless = require('serverless-http');
@@ -72,8 +91,9 @@ app.get('/orders', async (req, res, next) => {
 
 app.post('/order', async (req, res, next) => {
   try {
-    await Order.create(req.body);
-    return res.status(201).json({message: 'Order has been created successfully'})
+    const createdOrder = await Order.create(req.body);
+    await sendEmail(createdOrder.order_id)
+    return res.status(201).json({message: 'Order has been created successfully and an email will be sent with all details'})
   } catch (error) {
     return next(error);
   }

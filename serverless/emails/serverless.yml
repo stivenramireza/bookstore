@@ -1,19 +1,12 @@
-service: orders-service
+service: emails-service
 
 frameworkVersion: '2'
 
-useDotenv: true
-
 provider:
   name: aws
-  runtime: nodejs12.x
   lambdaHashingVersion: '20201221'
+  runtime: python3.8
   timeout: 60
-  environment:
-    DOCUMENTDB_HOSTNAME: ${env:cluster_docdb_dns}
-    DOCUMENTDB_USERNAME: ${env:db_username}
-    DOCUMENTDB_PASSWORD: ${env:db_password}
-
   vpc:
     securityGroupIds:
       - ${env:lambda_security_group_id}
@@ -23,23 +16,16 @@ provider:
 
 functions:
   api:
-    handler: handler.handler
+    handler: main.handler
     events:
       - http:
-          path: /
           method: ANY
-          cors: 
-            origin: "*"
-          authorizer:
-            arn: ${env:AWS_COGNITO_ARN}
-
-      - http:
           path: /{proxy+}
-          method: ANY
           cors: 
             origin: "*"
           authorizer:
             arn: ${env:AWS_COGNITO_ARN}
 
 plugins:
+  - serverless-python-requirements
   - serverless-offline
