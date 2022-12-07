@@ -9,7 +9,7 @@
   "devDependencies": {
     "serverless-python-requirements": "^5.1.1",
     "serverless-wsgi": "^2.0.1",
-    "serverless": "^2.56.0",
+    "serverless": "^3.25.1",
     "serverless-http": "^2.7.0",
     "serverless-offline": "^8.0.0"
   }
