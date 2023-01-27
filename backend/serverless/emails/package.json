@@ -7,7 +7,7 @@
         "start": "serverless offline start --httpPort 3005 --lambdaPort 3006"
     },
     "dependencies": {
-        "serverless": "^2.57.0",
+        "serverless": "^3.27.0",
         "serverless-http": "^2.7.0",
         "serverless-offline": "^8.1.0",
         "serverless-python-requirements": "^5.1.1"
